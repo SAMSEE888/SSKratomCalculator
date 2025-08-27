@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f3d2e" />
+  <title>เครื่องคำนวณวัตถุดิบน้ำกระท่อม • SS789</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- App -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" sizes="512x512" href="icons/icon-512.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <meta name="description" content="คำนวณอัตราส่วนใบกระท่อม น้ำ และผลผลิตน้ำกระท่อมดิบ • ออกแบบสวยงาม ใช้งานง่าย ติดตั้งเป็น PWA ได้">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand">
+        <img src="icons/icon-192.png" alt="SSKratom Logo" class="brand-icon" width="40" height="40">
+        <div class="brand-text">
+          <h1>เครื่องคำนวณวัตถุดิบน้ำกระท่อม</h1>
+          <p class="subtitle">สไตล์ SS789 • โทนสีเขียว • รองรับมือถือ</p>
+        </div>
+      </div>
+      <button id="installBtn" class="btn ghost" aria-label="ติดตั้งแอป">ติดตั้ง</button>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2 class="card-title">กรอกข้อมูล</h2>
+        <form id="calcForm" onsubmit="return false;">
+          <div class="grid">
+            <div class="input-group">
+              <label for="leafInput">ปริมาณใบกระท่อม (กก.)</label>
+              <input type="number" id="leafInput" inputmode="decimal" placeholder="เช่น 5" min="0" step="0.01" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+              <label for="waterInput">ปริมาณน้ำ (ลิตร)</label>
+              <input type="number" id="waterInput" inputmode="decimal" placeholder="เช่น 100" min="0" step="0.01" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+              <label for="yieldInput">ปริมาณน้ำกระท่อมดิบที่ต้องการ (ลิตร)</label>
+              <input type="number" id="yieldInput" inputmode="decimal" placeholder="เช่น 60" min="0" step="0.01" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="calculateButton" class="btn primary">คำนวณ</button>
+            <button id="resetButton" class="btn danger" type="reset">รีเซ็ต</button>
+          </div>
+          <p class="hint">ใส่ค่า <em>อย่างน้อยหนึ่งช่อง</em> แล้วกดคำนวณ (ห้ามค่าติดลบ)</p>
+        </form>
+      </section>
+
+      <section class="card" id="resultContainer" aria-live="polite" aria-atomic="true">
+        <h2 class="card-title">ผลลัพธ์การคำนวณ</h2>
+
+        <div class="result-section">
+          <h3>แบบบดใบกระท่อม</h3>
+          <p class="result-item" id="resultGroundLeaf"></p>
+          <p class="result-item" id="resultGroundWater"></p>
+          <p class="result-item" id="resultGroundYield"></p>
+        </div>
+
+        <div class="result-section">
+          <h3>แบบไม่บดใบ ( # 0.65 # )</h3>
+          <p class="result-item" id="resultNotGroundLeaf1"></p>
+          <p class="result-item" id="resultNotGroundWater1"></p>
+          <p class="result-item" id="resultNotGroundYield1"></p>
+        </div>
+
+        <div class="result-section">
+          <h3>แบบไม่บด ( # 0.63 # )</h3>
+          <p class="result-item" id="resultNotGroundLeaf2"></p>
+          <p class="result-item" id="resultNotGroundWater2"></p>
+          <p class="result-item" id="resultNotGroundYield2"></p>
+        </div>
+
+        <p class="note">**หมายเหตุ:** อัตราส่วนเหล่านี้เป็นค่าเฉพาะของ : SS789.Kratom # ส.สามสี # :</p>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>© <span id="year"></span> SS789.Kratom • PWA พร้อมติดตั้ง • ทำงานออฟไลน์</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
